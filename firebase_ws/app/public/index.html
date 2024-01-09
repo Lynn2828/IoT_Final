@@ -9,10 +9,9 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <title>IoT Final Project</title>
     <style>
-        canvas {
-            position: absolute;
-            left: 0;
-            top: 0;
+        #numberDisplay {
+            margin-top: 20px;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -20,35 +19,53 @@
 <body>
     <script src="../src/index.js"></script>
     <div id="root">
-        <div id="Chart1-container" style="height:50vh; width:50vw">
+        <div id="Chart1-container" style="height: 50vh; width: 50vw">
             <canvas id="Chart1" height="1000px" width="2000px"></canvas>
+            <div id="numberDisplay"></div>
         </div>
     </div>
 
     <script>
-        var canvas = document.getElementById('Chart1');
-        var ctx = canvas.getContext('2d');
+        const canvas = document.getElementById('Chart1');
+        const ctx = canvas.getContext('2d');
 
-        // Green line at y=200
+        // Draw the green line at y=200
         ctx.beginPath();
         ctx.moveTo(0, 200);
         ctx.lineTo(canvas.width, 200);
         ctx.strokeStyle = 'green';
         ctx.stroke();
 
-        // Yellow line at y=400
+        // Draw the yellow line at y=400
         ctx.beginPath();
         ctx.moveTo(0, 400);
         ctx.lineTo(canvas.width, 400);
         ctx.strokeStyle = 'yellow';
         ctx.stroke();
 
-        // Red line at y=500
+        // Draw the red line at y=500
         ctx.beginPath();
         ctx.moveTo(0, 500);
         ctx.lineTo(canvas.width, 500);
         ctx.strokeStyle = 'red';
         ctx.stroke();
+
+        // Function to display the number based on y value
+        function displayNumber(y) {
+            let numberDisplay = document.getElementById('numberDisplay');
+            if (y >= 500) {
+                numberDisplay.innerText = '3';
+            } else if (y >= 400) {
+                numberDisplay.innerText = '2';
+            } else if (y >= 200) {
+                numberDisplay.innerText = '1';
+            } else {
+                numberDisplay.innerText = '';
+            }
+        }
+
+        // Example usage to display number for y=300
+        displayNumber(300);
     </script>
 </body>
 
